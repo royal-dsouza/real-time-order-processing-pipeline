@@ -1,0 +1,42 @@
+{
+    "type": "record",
+    "name": "Order",
+    "namespace": "com.ecommerce",
+    "fields": [
+        {"name": "order_id", "type": "string"},
+        {"name": "customer_id", "type": "string"},
+        {"name": "order_date", "type": "string"},
+        {"name": "status", "type": "string"},
+        {"name": "total_amount", "type": "double"},
+        {
+            "name": "items",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "OrderItem",
+                    "fields": [
+                        {"name": "product_id", "type": "string"},
+                        {"name": "product_name", "type": "string"},
+                        {"name": "quantity", "type": "int"},
+                        {"name": "unit_price", "type": "double"}
+                    ]
+                }
+            }
+        },
+        {
+            "name": "shipping_address",
+            "type": {
+                "type": "record",
+                "name": "Address",
+                "fields": [
+                    {"name": "street", "type": "string"},
+                    {"name": "city", "type": "string"},
+                    {"name": "state", "type": "string"},
+                    {"name": "zip", "type": "string"},
+                    {"name": "country", "type": "string"}
+                ]
+            }
+        }
+    ]
+}
