@@ -125,6 +125,5 @@ def process_pubsub_message():
         print(f"ValueError: {ve}")
         return jsonify({"error": str(ve)}), 400
 
-# if __name__ == '__main__':
-#     # Run the Flask app locally
-#     app.run(host='0.0.0.0', port=8080)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
