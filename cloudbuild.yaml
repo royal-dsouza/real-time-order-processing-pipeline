@@ -46,6 +46,7 @@ steps:
           --platform=managed \
           --set-env-vars=PROJECT_ID=$PROJECT_ID,SCHEMA_NAME=$_SCHEMA_NAME \
           --service-account=gcp-admin@elevated-column-458305-f8.iam.gserviceaccount.com
+          --allow-unauthenticated
 
 # Store built images in Artifact Registry
 images:
