@@ -19,13 +19,13 @@ app = Flask(__name__)
 # Project configuration
 # SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "/Users/royaldsouza/Downloads/my_gcp_project.json") # for local dev
 # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE # for local dev
-# os.environ['GOOGLE_CLOUD_PROJECT'] = "elevated-column-458305-f8" # for local dev
+# os.environ['PROJECT_ID'] = "elevated-column-458305-f8" # for local dev
 
 SCHEMA_NAME = os.getenv("SCHEMA_NAME", "orders-schema")
 
-PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT") 
+PROJECT_ID = os.getenv("PROJECT_ID", "elevated-column-458305-f8") 
 if not PROJECT_ID:
-    raise EnvironmentError("GOOGLE_CLOUD_PROJECT environment variable must be set")
+    raise EnvironmentError("PROJECT_ID environment variable must be set")
 
 def get_schema():
     """Fetch the Avro schema from the schema registry."""
