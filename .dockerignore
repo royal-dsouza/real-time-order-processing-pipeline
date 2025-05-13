@@ -1,0 +1,58 @@
+# Git
+.git
+.gitignore
+
+# Tests
+tests/
+.pytest_cache/
+.coverage
+test_main.py
+
+# Development
+avro_publisher.py
+avro_subscriber.py
+orders.avro
+json_subscriber.py
+json_publisher.py
+mock_data_generator.py
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# CI/CD
+cloudbuild.yaml
+
+# Documentation
+README.md
+LICENSE
+*.md
+
+# Project files
+.vscode/
+.idea/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
