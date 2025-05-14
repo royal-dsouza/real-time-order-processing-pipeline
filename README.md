@@ -16,6 +16,10 @@ Requirements:
 9. Create a Cloud Scheduler job that sends an HTTP POST to the Cloud Run service every hour with a test payload.
 
 ## Solution
+
+![real-time-order-processing drawio](https://github.com/user-attachments/assets/c2fc536c-520d-4be9-bcc2-35aeb3bafbac)
+
+
 ```bash
 .
 ├── app.py                  # Cloud Run service handler
