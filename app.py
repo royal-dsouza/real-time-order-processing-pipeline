@@ -1,5 +1,5 @@
 """
-Cloud Run service for processing orders from Pub/Sub and test HTTP endpoints.
+Cloud Run service for processing orders from Pub/Sub.
 """
 
 import os
