@@ -16,9 +16,9 @@ from google.pubsub_v1.types import Schema
 from mock_data_generator import generate_random_order
 
 # # Project configuration
-# SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "/Users/royaldsouza/Downloads/my_gcp_project.json") # for local dev
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE # for local dev
-# os.environ['GOOGLE_CLOUD_PROJECT'] = "elevated-column-458305-f8" # for local dev
+SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "/Users/royaldsouza/Downloads/my_gcp_project.json") # for local dev
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE # for local dev
+os.environ['GOOGLE_CLOUD_PROJECT'] = "elevated-column-458305-f8" # for local dev
 
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT","elevated-column-458305-f8")
 if not PROJECT_ID:

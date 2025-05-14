@@ -12,16 +12,18 @@ from avro.io import BinaryDecoder, DatumReader
 from datetime import datetime
 from google.cloud import pubsub_v1
 from google.pubsub_v1.types import Schema
+from google.cloud import firestore
 
 
 app = Flask(__name__)
 
 # Project configuration
-# SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "/Users/royaldsouza/Downloads/my_gcp_project.json") # for local dev
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE # for local dev
-# os.environ['PROJECT_ID'] = "elevated-column-458305-f8" # for local dev
+SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "/Users/royaldsouza/Downloads/my_gcp_project.json") # for local dev
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE # for local dev
+os.environ['PROJECT_ID'] = "elevated-column-458305-f8" # for local dev
 
 SCHEMA_NAME = os.getenv("SCHEMA_NAME", "orders-schema")
+FIRESTORE_COLLECTION = os.getenv("FIRESTORE_COLLECTION", "processed_orders")
 
 PROJECT_ID = os.getenv("PROJECT_ID", "elevated-column-458305-f8") 
 if not PROJECT_ID:
@@ -90,6 +92,22 @@ def process_order(order):
         print(f"Error processing order {order['order_id']}: {e}")
         return None
     
+def save_to_firestore(processed_order):
+    """Save the processed order to Firestore."""
+    try:
+        # Initialize Firestore client
+        firestore_client = firestore.Client()
+        
+        # Define the Firestore collection
+        doc_ref = firestore_client.collection(FIRESTORE_COLLECTION).document(processed_order['order_id'])
+        
+        # Store the processed order in Firestore
+        doc_ref.set(processed_order)
+        print(f"Processed order stored in Firestore: {processed_order['order_id']}")
+    except Exception as e:
+        print(f"Error storing processed order in Firestore: {e}")
+        return jsonify({"error": "Failed to store processed order in Firestore"}), 500
+    
 @app.route('/', methods=['POST'])
 def process_pubsub_message():
     """Process incoming Pub/Sub messages."""
@@ -111,9 +129,12 @@ def process_pubsub_message():
         
         # Process the order
         processed_order = process_order(order)
-        
+
         if processed_order is None:
             return jsonify({"error": "Failed to process order"}), 500
+
+        # Save the processed order to Firestore
+        save_to_firestore(processed_order)
         
         return jsonify(processed_order), 200
     
