@@ -119,4 +119,7 @@ Requirements:
       --headers="Content-Type=application/json" \
       --message-body-from-file=test_payload.json
     ```
- 
+
+Acknowledgements
+
+This project was developed as part of the assignment from GCP Data Engineering Mastery Bootcamp by Grow Data Skills, showcasing real-time data engineering skills on Google Cloud Platform.
