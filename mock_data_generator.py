@@ -1,3 +1,7 @@
+"""
+This script generates random order data. Also provides a base64 enconded string of the Avro binary data. to be used in the message of JSON payload for testing purposes.
+"""
+
 import io
 import avro.schema
 from avro.io import DatumWriter, BinaryEncoder
